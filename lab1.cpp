@@ -160,7 +160,7 @@ void gauss_full_select() {
 
 int main()
 {
-	cout << fixed << setprecision(10);
+	cout << fixed << setprecision(4);
     // Solving systems of linear equations by the Gauss method
     cout << "\tJust Gauss method: \n";
     	just_gauss();
