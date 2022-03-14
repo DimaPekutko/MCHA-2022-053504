@@ -20,7 +20,7 @@ D = [
 ]
 
 
-b = [1.2,2.2,4.0,0.0,-1.2]
+b = [1.201,2.2,4.0,0.0,-1.2]
 
 VARIANT = 5
 SIZE = len(C[0])
@@ -35,7 +35,7 @@ def simple_iteration_method(matrix):
     x_vector = [0,0,0,0,0]
     for k in range(MAX_ITERATION_COUNT):
         buf_x_vector = [*x_vector]
-        print(buf_x_vector)
+        # print(buf_x_vector)
         is_acc_x = True
         for i in range(SIZE):
             str_sum = 0
@@ -70,15 +70,15 @@ def main():
     standard_matrix = [
         [100,2,100,4,5],
         [10,99,8,7,6],
-        [12,23,2,65,77],
+        [12,23,100,65,77],
         [2,1,11,96,33],
         [96,32,4,5,96]
     ]
 
-    # generate standard matrix
+    # # generate standard matrix
     for i in range(SIZE):
         for j in range(SIZE):
-            standard_matrix[i][j] = round(C[i][j]*VARIANT+D[i][j],PREC)
+            standard_matrix[i][j] = (round(C[i][j]*VARIANT+D[i][j],PREC))
             # standard_matrix[i][j] = i+j+1
     
     # standard_matrix[3][3] = 0
@@ -92,25 +92,10 @@ def main():
     for i in range(SIZE):
         buffer_sum = 0
         for j in range(SIZE):
-            buffer_sum += fabs(standard_matrix[i][j]/standard_matrix[i][i])
-        print(round(buffer_sum,PREC))
-    # print(str_sum)
-    # # norm 2
-    # _sum = 0
-    # for i in range(SIZE):
-    #     for j in range(SIZE):
-    #         _sum += (standard_matrix[i][j]/standard_matrix[i][i])
-    # print(_sum**2)
-    # # norm 3
-    # col_sum = 0
-    # for i in range(SIZE):
-    #     buffer_sum = 0
-    #     for j in range(SIZE):
-    #         buffer_sum += fabs(standard_matrix[j][i]/standard_matrix[i][i])
-    #     if buffer_sum > col_sum:
-    #         col_sum = buffer_sum
-    # print(col_sum)
-
+            if i != j:
+                buffer_sum += fabs(standard_matrix[i][j])
+        print(buffer_sum)
+    
     iter_x_vector, iter_count = simple_iteration_method(standard_matrix)
     seidel_x_vector, seidel_count = seidel_method(standard_matrix)
 
