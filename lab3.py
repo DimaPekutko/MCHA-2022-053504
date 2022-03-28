@@ -89,15 +89,15 @@ def main():
     border = [-10, 10]
     eps = 0.0001
     polynomial = sp.poly(x ** 3 + a * x ** 2 + b * x + c)
-    print("Roots count: ",
-          shturm(polynomial, border[0], border[1]))
+    res = sp.solve_poly_system([polynomial])
+    print(res)
+    print("Roots count: ", shturm(polynomial, border[0], border[1]))
     bis_res = bisection(polynomial, border[0], border[0] / 2, eps)
     print("Bisection: ", round(bis_res[0], 4), ": Iteration =", bis_res[1])
     chords_res = chord(polynomial, border[0], border[0] / 2, eps)
     print("Chords: ", round(chords_res[0], 4), ": Iteration =", chords_res[1])
     newton_res = newton(polynomial, border[0], eps)
-    print("Bisection: ", round(
-        newton_res[0], 4), ": Iteration =", newton_res[1])
+    print("Bisection: ", round(newton_res[0], 4), ": Iteration =", newton_res[1])
 
 
 if __name__ == "__main__":
